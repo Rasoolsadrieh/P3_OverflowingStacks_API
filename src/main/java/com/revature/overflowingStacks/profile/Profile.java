@@ -17,13 +17,11 @@ public class Profile {
     @Id
     @Column(name = "profile_name")
     private String profileName;
-    private String fname;
-    private String lname;
     @OneToOne(optional = false)
     @JoinColumn(name = "email", referencedColumnName = "email")
     private String email;
     private int balance;
-    @Column(name = "account-name")
+    @Column(name = "account_name")
     private String accountName;
     @Column(name = "account_number")
     private int accountNumber;

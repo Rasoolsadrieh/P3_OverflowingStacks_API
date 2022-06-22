@@ -20,6 +20,8 @@ import javax.persistence.Table;
 public class User {
     @Id
     private String email;
+    private String fname;
+    private String lname;
     @Column(name="phone_number")
     @NonNull
     private String phoneNumber;
@@ -28,4 +30,5 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NonNull
     private String password;
+    private String dob;
 }
