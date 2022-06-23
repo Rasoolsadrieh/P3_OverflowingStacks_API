@@ -28,4 +28,6 @@ public class Profile {
     @Column(name = "account_number")
     private String accountNumber;
 
+    private String profilePicture;
+
 }
