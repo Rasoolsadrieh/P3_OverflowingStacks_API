@@ -22,10 +22,10 @@ public class Profile {
     @OneToOne(optional = false)
     @JoinColumn(name = "email", referencedColumnName = "email")
     private String email;
-    private int balance;
+    private double balance;
     @Column(name = "account-name")
     private String accountName;
     @Column(name = "account_number")
-    private int accountNumber;
+    private String accountNumber;
 
 }
