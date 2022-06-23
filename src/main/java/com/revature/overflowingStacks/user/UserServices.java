@@ -41,7 +41,16 @@ public class UserServices implements Serviceable<User> {
     }
 
     @Override
-    public boolean validateInput(User object) {
-        return false;
+    public boolean validateInput(User newUserProfile) {
+        if (newUserProfile == null) return false;
+        if (newUserProfile.getEmail() == null || newUserProfile.getEmail().trim().equals("")) return false;
+        if (newUserProfile.getPhoneNumber() == null || newUserProfile.getPhoneNumber().trim().equals("")) return false;
+        if (newUserProfile.getUsername() == null || newUserProfile.getUsername().trim().equals(""))
+            return false;
+        if (newUserProfile.getPassword() == null || newUserProfile.getPassword().trim().equals(""))
+            return false;
+        if (newUserProfile.getDob() == null || newUserProfile.getDob().trim().equals("")) return false;
+
+        return true;
     }
 }
