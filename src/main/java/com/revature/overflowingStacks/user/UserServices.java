@@ -1,10 +1,19 @@
 package com.revature.overflowingStacks.user;
 
+import com.revature.overflowingStacks.util.exceptions.InvalidRequestException;
 import com.revature.overflowingStacks.util.interfaces.Serviceable;
 
 import java.util.List;
+import java.util.Optional;
 
 public class UserServices implements Serviceable<User> {
+
+    private final UserDao userDao;
+
+    public UserServices(UserDao userDao) {
+        this.userDao = userDao;
+    }
+
     @Override
     public User create(User newObject) {
         return null;
@@ -33,5 +42,14 @@ public class UserServices implements Serviceable<User> {
     @Override
     public boolean validateInput(User object) {
         return false;
+    }
+
+
+    public boolean resetPassword(String email, String newPassword) {
+
+        boolean isSuccess = false;
+        userDao.updatePassword(email, newPassword);
+        isSuccess = true;
+        return isSuccess;
     }
 }

@@ -4,6 +4,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.beats_ahoy.users.Users;
 import com.revature.beats_ahoy.users.UsersServices;
 import com.revature.beats_ahoy.util.web.dto.LoginCreds;
+import com.revature.overflowingStacks.user.User;
+import com.revature.overflowingStacks.user.UserServices;
+import com.revature.overflowingStacks.util.web.dto.LoginCreds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,17 +24,17 @@ import java.io.IOException;
 @RequestMapping("/auth")
 public class AuthServlet {
 
-    private final UsersServices usersServices;
+    private final UserServices userServices;
 
     @Autowired
-    public AuthServlet(UsersServices usersServices){
-        this.usersServices = usersServices;
+    public AuthServlet(UserServices userServices){
+        this.userServices = userServices;
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void authorizeUser(@RequestBody LoginCreds loginCreds, HttpSession httpSession){
-        Users authUser = usersServices.authenticateUser(loginCreds.getUsername(), loginCreds.getPassword());
+        User authUser = userServices.authenticateUser(loginCreds.getUsername(), loginCreds.getPassword());
         httpSession.setAttribute("authUser", authUser);
     }
 
