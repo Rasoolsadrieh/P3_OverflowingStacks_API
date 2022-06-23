@@ -9,6 +9,7 @@ import java.util.List;
 @Service
 @Transactional
 public class ProfileServices implements Serviceable<Profile> {
+    private ProfileDao profileDao;
     @Override
     public Profile create(Profile newObject) {
         return null;
@@ -21,13 +22,16 @@ public class ProfileServices implements Serviceable<Profile> {
 
     @Override
     public Profile readById(String id) {
-        return null;
+        Profile profile = profileDao.findById(id).get();
+        return profile;
+    }
+    @Override
+    public Profile update(Profile updateProfile){
+        profileDao.save(updateProfile);
+        return updateProfile;
     }
 
-    @Override
-    public Profile update(Profile updatedObject) {
-        return null;
-    }
+
 
     @Override
     public boolean delete(String id) {
