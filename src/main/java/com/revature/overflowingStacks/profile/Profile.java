@@ -27,7 +27,6 @@ public class Profile {
     private String accountName;
     @Column(name = "account_number")
     private String accountNumber;
-
-    private String profilePicture;
+    private String profilephoto;
 
 }

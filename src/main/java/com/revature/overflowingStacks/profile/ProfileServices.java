@@ -69,7 +69,7 @@ public class ProfileServices implements Serviceable<Profile> {
         if(newProfile.getEmail() == null || newProfile.getEmail().equals("")) return false;
         if(newProfile.getBalance() < 100 ) return false;
         if(newProfile.getAccountName() == null || newProfile.getAccountName().trim().equals("")) return false;
-//        if(newProfile.getProfileImage() == null || newProfile.getProfileImage().trim().equals("")) return false;
+       // if(newProfile.getProfileImage() == null || newProfile.getProfileImage().trim().equals("")) return false;
         return newProfile.getAccountNumber() != null || !newProfile.getAccountNumber().trim().equals ("");
     }
 }
