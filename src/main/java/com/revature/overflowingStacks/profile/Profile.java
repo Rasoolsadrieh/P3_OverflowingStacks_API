@@ -27,5 +27,4 @@ public class Profile {
     private String accountName;
     @Column(name = "account_number")
     private int accountNumber;
-
 }
