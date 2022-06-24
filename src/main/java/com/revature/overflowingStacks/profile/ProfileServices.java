@@ -61,12 +61,11 @@ public class ProfileServices implements Serviceable<Profile> {
         profileDao.deleteById(profileName);
         return true;
     }
-
     @Override
     public boolean validateInput(Profile newProfile) {
         if(newProfile == null) return false;
         if(newProfile.getProfileName()== null || newProfile.getProfileName().trim().equals("")) return false;
-        if(newProfile.getEmail() == null || newProfile.getEmail().equals("")) return false;
+        if(newProfile.getEmail()== null || newProfile.getEmail().equals("")) return false;
         if(newProfile.getBalance() < 100 ) return false;
         if(newProfile.getAccountName() == null || newProfile.getAccountName().trim().equals("")) return false;
        // if(newProfile.getProfileImage() == null || newProfile.getProfileImage().trim().equals("")) return false;

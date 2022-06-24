@@ -2,8 +2,13 @@ package com.revature.overflowingStacks.user;
 
 import com.revature.overflowingStacks.util.interfaces.Authable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin
@@ -12,8 +17,10 @@ public class UserServlet implements Authable {
 
     @Autowired
     public UserServlet(UserServices userServices){
-        this.userServices=userServices;
+        this.userServices = userServices;
     }
-
-
+    @GetMapping("/findAllUsers")
+    public ResponseEntity<List> findAllUsers(){
+        return new ResponseEntity<>(userServices.readAll(), HttpStatus.FOUND);
+    }
 }
