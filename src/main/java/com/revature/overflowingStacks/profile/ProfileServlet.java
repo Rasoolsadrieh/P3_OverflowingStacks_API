@@ -1,10 +1,14 @@
 package com.revature.overflowingStacks.profile;
 
+import com.revature.overflowingStacks.user.User;
+import com.revature.overflowingStacks.user.UserServices;
+import com.revature.overflowingStacks.util.web.dto.ProfileInitializer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RestController
@@ -12,9 +16,11 @@ import java.util.List;
 @RequestMapping("/profile")
 public class ProfileServlet {
     private final ProfileServices profileServices;
+    private final UserServices userServices;
     @Autowired
-    public ProfileServlet(ProfileServices profileServices){
+    public ProfileServlet(ProfileServices profileServices, UserServices userServices){
         this.profileServices = profileServices;
+        this.userServices = userServices;
     }
     @GetMapping("/findAllProfile")
     public ResponseEntity<List> findAllProfile(){
@@ -26,15 +32,42 @@ public class ProfileServlet {
         return new ResponseEntity<>(profile, HttpStatus.OK);
     }
     @PostMapping("/register")
-    public ResponseEntity<Profile> saveCustomer(@RequestBody Profile profile) {
-        Profile newProfile = profileServices.create(profile);
-        return new ResponseEntity<>(newProfile, HttpStatus.CREATED);
+    public ResponseEntity<Profile> CreateProfile(@RequestBody ProfileInitializer newProfilei, HttpSession req){
+
+        Profile newProfile = new Profile();
+        User authProfile= (User) req.getAttribute("authUser");
+
+        newProfile.setProfileName(newProfilei.getProfileName());
+        newProfile.setFname(newProfilei.getFname());
+        newProfile.setLname(newProfilei.getLname());
+        newProfile.setEmail(userServices.readById(newProfilei.getEmail()));
+        newProfile.setBalance(newProfilei.getBalance());
+        newProfile.setAccountName(newProfilei.getAccountName());
+        newProfile.setAccountNumber(newProfilei.getAccountNumber());
+
+
+        Profile profile = profileServices.create(newProfile);
+        return new ResponseEntity<>(profile, HttpStatus.CREATED);
     }
+
     @PutMapping("/update")
-    public ResponseEntity<Profile> updateProfile(@RequestBody Profile profile) {
-        Profile newProfile = profileServices.update(profile);
-        return new ResponseEntity<>(newProfile, HttpStatus.OK);
+    public ResponseEntity<Profile> updateProfile(@RequestBody ProfileInitializer newProfilei, HttpSession req){
+
+        Profile newProfile = new Profile();
+        User authProfile= (User) req.getAttribute("authUser");
+
+        newProfile.setProfileName(newProfilei.getProfileName());
+        newProfile.setFname(newProfilei.getFname());
+        newProfile.setLname(newProfilei.getLname());
+        newProfile.setEmail(userServices.readById(newProfilei.getEmail()));
+        newProfile.setBalance(newProfilei.getBalance());
+        newProfile.setAccountName(newProfilei.getAccountName());
+        newProfile.setAccountNumber(newProfilei.getAccountNumber());
+
+        Profile profile = profileServices.update(newProfile);
+        return new ResponseEntity<>(profile, HttpStatus.CREATED);
     }
+
     @DeleteMapping("/delete")
     public void deleteProfile(@RequestParam String profileName) {
         boolean newProfile = profileServices.delete(profileName);
