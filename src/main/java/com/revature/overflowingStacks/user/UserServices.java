@@ -1,11 +1,13 @@
 package com.revature.overflowingStacks.user;
 
+import com.revature.overflowingStacks.util.exceptions.ResourcePersistanceException;
 import com.revature.overflowingStacks.util.interfaces.Serviceable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -27,14 +29,17 @@ public class UserServices implements Serviceable<User> {
 
     @Override
     public User readById(String id) {
-        User user = userDao.findById(id).get();
-        return user;
+        Optional<User> optionalUser= userDao.findById(id);
+        if(!optionalUser.isPresent()) {
+            throw new ResourcePersistanceException("The user eamil " + id + "is not present.");
+        }
+        return optionalUser.get();
     }
+
 
     @Override
     public User update(User updatedObject) {
-        userDao.save(updatedObject);
-        return null;
+        return userDao.save(updatedObject);
     }
 
     @Override
@@ -54,13 +59,6 @@ public class UserServices implements Serviceable<User> {
         if (newUserProfile.getDob() == null || newUserProfile.getDob().trim().equals("")) return false;
 
         return true;
-    }
 
-    public boolean resetPassword(String email, String newPassword) {
-
-        boolean isSuccess = false;
-        userDao.updatePassword(email, newPassword);
-        isSuccess = true;
-        return isSuccess;
-    }
+}
 }
