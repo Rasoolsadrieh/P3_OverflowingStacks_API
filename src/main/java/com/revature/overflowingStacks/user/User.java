@@ -28,4 +28,9 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NonNull
     private String password;
+<<<<<<< Updated upstream
+=======
+    private String dob;
+    private String secret;
+>>>>>>> Stashed changes
 }
