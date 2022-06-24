@@ -16,13 +16,14 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "user")
+@Table(name= "users")
 public class User {
     @Id
     private String email;
+
     private String fname;
     private String lname;
-    @Column(name="phone_number")
+
     @NonNull
     private String phoneNumber;
     @NonNull
