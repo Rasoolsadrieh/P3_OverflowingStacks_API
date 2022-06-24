@@ -21,9 +21,14 @@ public class UserServlet implements Authable {
 
     @PutMapping("/resetPassword")
     public String resetPassword(@RequestBody ResetPasswordCreds rpc){
-        String message = "";
-        boolean isSuccess = false;
-        isSuccess = userServices.resetPassword(rpc.getEmail(), rpc.getNewpassword());
-        return message = "";
+
+        User oldPassword = userServices.readById(rpc.getEmail());
+
+        oldPassword.setPassword(rpc.getNewpassword());
+
+        User newPassword = userServices.update(oldPassword);
+
+        String message = "Your password has been reset";
+        return message;
     }
 }

@@ -13,21 +13,20 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "profile")
-
+@Table(name= "profile_table")
 public class Profile {
     @Id
     @Column(name = "profile_name")
     private String profileName;
     private String fname;
     private String lname;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "users", referencedColumnName = "email")
-    private User profileEmail;
     private int balance;
     @Column(name = "account_name")
     private String accountName;
     @Column(name = "account_number")
     private int accountNumber;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "profile_email", referencedColumnName = "email")
+    private User email;
 
 }

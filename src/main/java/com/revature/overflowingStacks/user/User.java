@@ -16,16 +16,14 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "users")
+@Table(name= "user_table")
 public class User {
     @Id
     private String email;
-
     @Column(name="phone_number")
     private String phoneNumber;
-
     private String username;
-
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+    private String dob;
 }
