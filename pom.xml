@@ -45,15 +45,12 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-<<<<<<< Updated upstream
-=======
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<version>42.3.3</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
-		<!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
+
 
 		<!-- https://mvnrepository.com/artifact/com.google.zxing/core -->
 		<dependency>
@@ -61,13 +58,13 @@
 			<artifactId>core</artifactId>
 			<version>3.5.0</version>
 		</dependency>
-
+		<!-- https://mvnrepository.com/artifact/com.google.zxing/javase -->
 		<dependency>
 			<groupId>com.google.zxing</groupId>
 			<artifactId>javase</artifactId>
 			<version>3.5.0</version>
 		</dependency>
-
+		<!--V-->
 		<!-- https://mvnrepository.com/artifact/dev.turingcomplete/kotlin-onetimepassword -->
 		<dependency>
 			<groupId>dev.turingcomplete</groupId>
@@ -94,8 +91,6 @@
 		</dependency>
 
 
-
->>>>>>> Stashed changes
 	</dependencies>
 
 	<build>

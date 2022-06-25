@@ -5,16 +5,16 @@ import com.revature.overflowingStacks.util.web.dto.CodeCheck;
 import dev.turingcomplete.kotlinonetimepassword.GoogleAuthenticator;
 import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
-<<<<<<< Updated upstream
+
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RestController;
-=======
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.*;
->>>>>>> Stashed changes
+
 
 @RestController
 @CrossOrigin
@@ -27,8 +27,6 @@ public class UserServlet implements Authable {
         this.userServices=userServices;
     }
 
-<<<<<<< Updated upstream
-=======
 
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user){
@@ -49,10 +47,18 @@ public class UserServlet implements Authable {
         String usersSecret = user.getSecret();
         System.out.println(usersSecret + "1");
         String sixCode = userServices.getTOTPCode(usersSecret);
-        System.out.println(sixCode + "2");
-        return new ResponseEntity<>(user, HttpStatus.OK);
+        System.out.println(sixCode);
+
+        System.out.println("---------------------");
+        System.out.println(codeCheck.getCode());
+
+        if(codeCheck.getCode().equals(sixCode)) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }else if(!codeCheck.getCode().equals(sixCode)) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_ACCEPTABLE);
+        }
+        return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
 
->>>>>>> Stashed changes
 
 }

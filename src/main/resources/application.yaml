@@ -1,0 +1,17 @@
+server:
+  port: 9006
+  servlet:
+    context-path: /
+spring:
+  application:
+    name: frittte
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=test
+    username: postgres
+    password: password
+  jpa:
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update

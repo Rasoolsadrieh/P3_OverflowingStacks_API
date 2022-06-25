@@ -16,7 +16,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "user")
+@Table(name= "user_table")
 public class User {
     @Id
     private String email;
@@ -28,9 +28,8 @@ public class User {
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NonNull
     private String password;
-<<<<<<< Updated upstream
-=======
+
     private String dob;
     private String secret;
->>>>>>> Stashed changes
+
 }
