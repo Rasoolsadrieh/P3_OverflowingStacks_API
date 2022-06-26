@@ -61,4 +61,3 @@ public class UserServices implements Serviceable<User> {
         return true;
 
 }
-}
