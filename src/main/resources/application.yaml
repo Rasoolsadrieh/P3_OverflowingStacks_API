@@ -11,9 +11,9 @@ spring:
     name: overflowingstacks
     datasource:
     driver-class-name: org.postgresql.Driver
-      url: {DBURL}
-      username: {DBUSER}
-      password: {DBPASS}
+      url: ${DBURL}
+      username: ${DBUSER}
+      password: ${DBPASS}
     jpa:
       database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
