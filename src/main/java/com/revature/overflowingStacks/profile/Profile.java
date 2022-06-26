@@ -1,6 +1,7 @@
 package com.revature.overflowingStacks.profile;
 
 import com.revature.overflowingStacks.user.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,23 +13,19 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "profile")
-
+@Table(name= "profile_table")
 public class Profile {
+
     @Id
     @Column(name = "profile_name")
     private String profileName;
     @OneToOne(optional = false)
     @JoinColumn(name = "email", referencedColumnName = "email")
-
-    @NonNull
     private User email;
     private double balance;
-
     @Column(name = "account_name")
     private String accountName;
     @Column(name = "account_number")
     private String accountNumber;
 //    private String profilePicture;
-
 }

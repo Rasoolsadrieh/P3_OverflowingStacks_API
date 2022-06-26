@@ -6,12 +6,16 @@ import com.revature.overflowingStacks.util.interfaces.Serviceable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.Column;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 @Transactional
 public class ProfileServices implements Serviceable<Profile> {
+
 
     private ProfileDao profileDao;
     @Autowired
@@ -22,6 +26,7 @@ public class ProfileServices implements Serviceable<Profile> {
     public boolean validateProfilenameNotUsed(String profileName){
         return profileDao.existsById(profileName);
     }
+
     @Override
     public Profile create(Profile newProfile){
         if(!validateInput(newProfile)){
@@ -51,24 +56,29 @@ public class ProfileServices implements Serviceable<Profile> {
     }
 
     @Override
-    public Profile update(Profile updatedProfile) {
-        profileDao.save(updatedProfile);
-        return updatedProfile;
-    }
-
-    @Override
     public boolean delete(String profileName) {
         profileDao.deleteById(profileName);
         return true;
     }
+
+    @Override
+    public Profile update(Profile updateProfile){
+        profileDao.save(updateProfile);
+        return updateProfile;
+    }
+
+
+
+
     @Override
     public boolean validateInput(Profile newProfile) {
-        if(newProfile == null) return false;
-        if(newProfile.getProfileName()== null || newProfile.getProfileName().trim().equals("")) return false;
-        if(newProfile.getEmail()== null || newProfile.getEmail().equals("")) return false;
-        if(newProfile.getBalance() < 100 ) return false;
+        if(newProfile == null ) return false;
+        if(newProfile.getProfileName() == null || newProfile.getProfileName().trim().equals("")) return false;
+        if(newProfile.getFname() == null||newProfile.getFname().trim().equals("")) return false;
+        if(newProfile.getLname() == null||newProfile.getLname().trim().equals("")) return false;
+        if(newProfile.getEmail() == null||newProfile.getEmail().equals("")) return false;
+        if(newProfile.getBalance() <= 0) return false;
         if(newProfile.getAccountName() == null || newProfile.getAccountName().trim().equals("")) return false;
-       // if(newProfile.getProfileImage() == null || newProfile.getProfileImage().trim().equals("")) return false;
-        return newProfile.getAccountNumber() != null || !newProfile.getAccountNumber().trim().equals ("");
+        return (newProfile.getAccountNumber() != null)  ;
     }
 }

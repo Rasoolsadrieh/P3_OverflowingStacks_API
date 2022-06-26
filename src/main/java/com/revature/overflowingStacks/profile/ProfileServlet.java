@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -71,6 +72,23 @@ public class ProfileServlet {
     @DeleteMapping("/delete")
     public void deleteProfile(@RequestParam String profileName) {
         boolean newProfile = profileServices.delete(profileName);
+    }
+
+    @GetMapping("/findProfile")
+    public ResponseEntity<Profile> FindWhomProfile(@RequestParam String id){
+        try {
+            Profile profile = profileServices.readById(id);
+            return new ResponseEntity<>(profile, HttpStatus.OK);
+        }catch(Exception e){
+            return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
+        }
+
+    }
+
+    @PutMapping("/updateProfile")
+    public ResponseEntity<Profile> updateTheProfile(@RequestBody Profile profile) {
+        Profile updateProfile= profileServices.update(profile);
+        return new ResponseEntity<>(updateProfile, HttpStatus.OK);
     }
 
 }
