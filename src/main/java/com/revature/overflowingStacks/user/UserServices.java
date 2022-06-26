@@ -1,11 +1,14 @@
 package com.revature.overflowingStacks.user;
 
+import com.revature.overflowingStacks.util.exceptions.ResourcePersistanceException;
 import com.revature.overflowingStacks.util.interfaces.Serviceable;
+
 import de.taimos.totp.TOTP;
 import dev.turingcomplete.kotlinonetimepassword.GoogleAuthenticator;
 import lombok.val;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,20 +16,19 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 public class UserServices implements Serviceable<User> {
 
-    private  UserDao userDao;
-
+    private UserDao userDao;
     @Autowired
     public UserServices(UserDao userDao) {this.userDao = userDao;}
 
-
     @Override
-    public User create(User newObject) {
-        return null;
+    public User create(User newUser) {
+        return userDao.save(newUser);
     }
 
     @Override
@@ -38,11 +40,18 @@ public class UserServices implements Serviceable<User> {
     public User readById(String id) {
         User user = userDao.findById(id).get();
         return user;
+//         Optional<User> optionalUser= userDao.findById(id);
+//         if(!optionalUser.isPresent()) {
+//             throw new ResourcePersistanceException("The user eamil " + id + "is not present.");
+//         }
+//         return optionalUser.get();
+
     }
+
 
     @Override
     public User update(User updatedObject) {
-        return null;
+        return userDao.save(updatedObject);
     }
 
     @Override
@@ -51,6 +60,7 @@ public class UserServices implements Serviceable<User> {
     }
 
     @Override
+
     public boolean validateInput(User object) {
         return false;
     }
@@ -68,4 +78,17 @@ public class UserServices implements Serviceable<User> {
         }
     }
 
+    public boolean validateInput(User newUserProfile) {
+        if (newUserProfile == null) return false;
+        if (newUserProfile.getEmail() == null || newUserProfile.getEmail().trim().equals("")) return false;
+        if (newUserProfile.getPhoneNumber() == null || newUserProfile.getPhoneNumber().trim().equals("")) return false;
+        if (newUserProfile.getUsername() == null || newUserProfile.getUsername().trim().equals(""))
+            return false;
+        if (newUserProfile.getPassword() == null || newUserProfile.getPassword().trim().equals(""))
+            return false;
+        if (newUserProfile.getDob() == null || newUserProfile.getDob().trim().equals("")) return false;
+
+        return true;
+
+}
 
