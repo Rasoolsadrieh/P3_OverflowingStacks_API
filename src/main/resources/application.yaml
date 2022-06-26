@@ -1,13 +1,16 @@
+
 server:
-  port: 9006
+  port: 9005
   servlet:
     context-path: /
+# in a properties file, it would look like spring.application.name
 spring:
   application:
-    name: frittte
+    name: overflowingstacks
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=test
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=overflowingstacks
+
     username: postgres
     password: password
   jpa:
@@ -15,4 +18,11 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: update
-
+management:
+  endpoints:
+    web:
+      exposure:
+        includes:
+          - "beans"
+          - "health"
+          - "info"

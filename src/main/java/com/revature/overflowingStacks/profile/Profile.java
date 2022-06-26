@@ -1,6 +1,7 @@
 package com.revature.overflowingStacks.profile;
 
 import com.revature.overflowingStacks.user.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
