@@ -58,8 +58,6 @@ public class ProfileServlet {
         User authProfile= (User) req.getAttribute("authUser");
 
         newProfile.setProfileName(newProfilei.getProfileName());
-        newProfile.setFname(newProfilei.getFname());
-        newProfile.setLname(newProfilei.getLname());
         newProfile.setEmail(userServices.readById(newProfilei.getEmail()));
         newProfile.setBalance(newProfilei.getBalance());
         newProfile.setAccountName(newProfilei.getAccountName());
