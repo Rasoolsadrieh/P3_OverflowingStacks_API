@@ -74,8 +74,6 @@ public class ProfileServices implements Serviceable<Profile> {
     public boolean validateInput(Profile newProfile) {
         if(newProfile == null ) return false;
         if(newProfile.getProfileName() == null || newProfile.getProfileName().trim().equals("")) return false;
-        if(newProfile.getFname() == null||newProfile.getFname().trim().equals("")) return false;
-        if(newProfile.getLname() == null||newProfile.getLname().trim().equals("")) return false;
         if(newProfile.getEmail() == null||newProfile.getEmail().equals("")) return false;
         if(newProfile.getBalance() <= 0) return false;
         if(newProfile.getAccountName() == null || newProfile.getAccountName().trim().equals("")) return false;
