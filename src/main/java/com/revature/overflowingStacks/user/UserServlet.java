@@ -8,23 +8,19 @@ import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.overflowingStacks.util.web.dto.ResetPasswordCreds;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.web.bind.annotation.*;
 
+
+import java.util.List;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin
@@ -34,15 +30,12 @@ public class UserServlet implements Authable {
 
     @Autowired
     public UserServlet(UserServices userServices){
-        this.userServices=userServices;
+        this.userServices = userServices;
     }
-
-    @PostMapping("/register")
-    public ResponseEntity<User> createUser(@RequestBody User user){
-        User newUser = userServices.create(user);
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+    @GetMapping("/findAllUsers")
+    public ResponseEntity<List> findAllUsers(){
+        return new ResponseEntity<>(userServices.readAll(), HttpStatus.FOUND);
     }
-
 
     @PutMapping("/resetPassword")
     public String resetPassword(@RequestBody ResetPasswordCreds rpc){
@@ -89,6 +82,4 @@ public class UserServlet implements Authable {
         }
         return new ResponseEntity<>(user, HttpStatus.ACCEPTED);
     }
-
-
 }
