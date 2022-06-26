@@ -15,11 +15,6 @@ import javax.persistence.*;
 @Entity
 @Table(name= "profile_table")
 public class Profile {
-    @Id
-    @Column(name = "profile_name")
-    private String profileName;
-    private String fname;
-    private String lname;
     private int balance;
     @Column(name = "account_name")
     private String accountName;

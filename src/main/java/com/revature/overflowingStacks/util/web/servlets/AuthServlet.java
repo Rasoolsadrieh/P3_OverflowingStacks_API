@@ -1,4 +1,7 @@
 
+import org.springframework.web.bind.annotation.*;
+
+
 //package com.revature.overflowingStacks.util.web.servlets;
 //
 //import com.revature.overflowingStacks.user.UserServices;
@@ -43,6 +46,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 
+
 // @WebServlet("/auth") // this requires a default No-Args constructor, but we make our own constructor in line 24
 
 
@@ -50,7 +54,6 @@ import javax.servlet.http.HttpSession;
 @CrossOrigin
 @RequestMapping("/auth")
 public class AuthServlet {
-
 
 }
 
