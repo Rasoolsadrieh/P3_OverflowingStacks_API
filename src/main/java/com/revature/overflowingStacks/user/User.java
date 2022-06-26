@@ -20,6 +20,8 @@ import javax.persistence.Table;
 public class User {
     @Id
     private String email;
+    private String fname;
+    private String lname;
     @Column(name="phone_number")
     private String phoneNumber;
     private String username;

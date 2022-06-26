@@ -19,8 +19,6 @@ public class Profile {
     @Id
     @Column(name = "profile_name")
     private String profileName;
-    private String fname;
-    private String lname;
     @OneToOne(optional = false)
     @JoinColumn(name = "email", referencedColumnName = "email")
     private User email;
