@@ -11,6 +11,7 @@ import org.apache.commons.codec.binary.Hex;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import org.springframework.transaction.annotation.Transactional;
 
 
@@ -21,21 +22,26 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserServices implements Serviceable<User> {
-
     private UserDao userDao;
     @Autowired
-    public UserServices(UserDao userDao) {this.userDao = userDao;}
+    public UserServices(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     public User create(User newUser) {
-        return userDao.save(newUser);
-    }
+        User persistedUser = userDao.save(newUser);
 
+        if(persistedUser == null){
+            throw new ResourcePersistanceException("User was not persisted to the database upon registration");
+        }
+        return persistedUser;
+    }
     @Override
     public List<User> readAll() {
-        return null;
+        List<User> users = (List<User>) userDao.findAll();
+        return users;
     }
-
     @Override
     public User readById(String id) {
         User user = userDao.findById(id).get();
@@ -59,11 +65,6 @@ public class UserServices implements Serviceable<User> {
         return false;
     }
 
-    @Override
-
-    public boolean validateInput(User object) {
-        return false;
-    }
 
     public String getTOTPCode(String secret) {
         Base32 base32 = new Base32();
@@ -76,7 +77,6 @@ public class UserServices implements Serviceable<User> {
         return TOTP.getOTP(hexKey);
 
         }
-    }
 
     public boolean validateInput(User newUserProfile) {
         if (newUserProfile == null) return false;
@@ -87,8 +87,8 @@ public class UserServices implements Serviceable<User> {
         if (newUserProfile.getPassword() == null || newUserProfile.getPassword().trim().equals(""))
             return false;
         if (newUserProfile.getDob() == null || newUserProfile.getDob().trim().equals("")) return false;
-
         return true;
+    }
 
 }
 

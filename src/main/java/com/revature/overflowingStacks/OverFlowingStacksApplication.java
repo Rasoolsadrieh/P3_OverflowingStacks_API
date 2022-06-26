@@ -6,10 +6,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class OverflowingStacksApplication {
-
+public class OverFlowingStacksApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(OverflowingStacksApplication.class, args);
+		SpringApplication.run(OverFlowingStacksApplication.class, args);
 	}
 
 }
+

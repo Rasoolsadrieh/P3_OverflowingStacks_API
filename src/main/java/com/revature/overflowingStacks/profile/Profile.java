@@ -15,12 +15,19 @@ import javax.persistence.*;
 @Entity
 @Table(name= "profile_table")
 public class Profile {
-    private int balance;
+
+    @Id
+    @Column(name = "profile_name")
+    private String profileName;
+    private String fname;
+    private String lname;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "email", referencedColumnName = "email")
+    private User email;
+    private double balance;
     @Column(name = "account_name")
     private String accountName;
     @Column(name = "account_number")
-    private int accountNumber;
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "profile_email", referencedColumnName = "email")
-    private User email;
+    private String accountNumber;
+//    private String profilePicture;
 }

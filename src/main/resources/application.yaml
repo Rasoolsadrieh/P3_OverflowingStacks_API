@@ -1,12 +1,15 @@
+# You've seen properties as things link hibernate.connection.url
+# server.port=
+# server.servlet.context-path=
 server:
-  port: 9005
+  port: 9004
   servlet:
     context-path: /
 # in a properties file, it would look like spring.application.name
 spring:
   application:
     name: overflowingstacks
-  datasource:
+    datasource:
     driver-class-name: org.postgresql.Driver
     url: jdbc:postgresql://localhost:5432/postgres?currentSchema=overflowingstacks
     username: postgres
