@@ -12,8 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name= "profile")
-
+@Table(name= "profile_table")
 public class Profile {
     @Id
     @Column(name = "profile_name")
@@ -22,7 +21,6 @@ public class Profile {
     private String lname;
     @OneToOne(optional = false)
     @JoinColumn(name = "email", referencedColumnName = "email")
-    @NonNull
     private User email;
     private double balance;
     @Column(name = "account_name")

@@ -1,6 +1,10 @@
 package com.revature.overflowingStacks.util.web.servlets;
 
+<<<<<<< HEAD
 import com.revature.overflowingStacks.profile.ProfileServices;
+=======
+import com.fasterxml.jackson.databind.ObjectMapper;
+>>>>>>> DevOps
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/auth")
 public class AuthServlet {
 
+<<<<<<< HEAD
     private final ProfileServices profileServices;
 
     @Autowired
@@ -30,5 +35,7 @@ public class AuthServlet {
 //    public void logout(HttpSession session){
 //        session.invalidate();
 //    }
+=======
+>>>>>>> DevOps
 
 }
