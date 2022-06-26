@@ -28,5 +28,4 @@ public class Profile {
     @ManyToOne(optional = false)
     @JoinColumn(name = "profile_email", referencedColumnName = "email")
     private User email;
-
 }
