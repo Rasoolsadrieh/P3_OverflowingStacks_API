@@ -1,6 +1,7 @@
 package com.revature.overflowingStacks.profile;
 
 import com.revature.overflowingStacks.util.exceptions.InvalidRequestException;
+
 import com.revature.overflowingStacks.util.exceptions.ResourcePersistanceException;
 import com.revature.overflowingStacks.util.interfaces.Serviceable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,7 @@ public class ProfileServices implements Serviceable<Profile> {
             throw new ResourcePersistanceException("Users was not persisted to the database upon registration");
         }
         return persistedProfile;
+
     }
 
     @Override
@@ -79,4 +81,5 @@ public class ProfileServices implements Serviceable<Profile> {
         if(newProfile.getAccountName() == null || newProfile.getAccountName().trim().equals("")) return false;
         return (newProfile.getAccountNumber() != null)  ;
     }
+
 }

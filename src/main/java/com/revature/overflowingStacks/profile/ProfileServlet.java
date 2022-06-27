@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+
 import javax.servlet.http.HttpSession;
 import java.util.List;
+
 
 @RestController
 @CrossOrigin
@@ -64,11 +66,7 @@ public class ProfileServlet {
         Profile profile = profileServices.update(newProfile);
         return new ResponseEntity<>(profile, HttpStatus.CREATED);
     }
-
-    @DeleteMapping("/delete")
-    public void deleteProfile(@RequestParam String profileName) {
-        boolean newProfile = profileServices.delete(profileName);
-    }
+    
 
 //     @GetMapping("/findProfile")
 //     public ResponseEntity<Profile> FindWhomProfile(@RequestParam String id){
@@ -85,6 +83,18 @@ public class ProfileServlet {
     public ResponseEntity<Profile> updateTheProfile(@RequestBody Profile profile) {
         Profile updateProfile= profileServices.update(profile);
         return new ResponseEntity<>(updateProfile, HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<Profile> createProfile(@RequestBody Profile profile) {
+        Profile newProfile = profileServices.create(profile);
+        return new ResponseEntity<>(newProfile, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/delete/{email}")
+    public ResponseEntity<Profile> deleteProfile(@PathVariable String email) {
+        profileServices.delete(email);
+        return new ResponseEntity<Profile>(HttpStatus.OK);
     }
 
 }
