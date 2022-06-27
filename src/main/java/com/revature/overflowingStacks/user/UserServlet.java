@@ -37,6 +37,12 @@ public class UserServlet implements Authable {
         return new ResponseEntity<>(userServices.readAll(), HttpStatus.FOUND);
     }
 
+    @GetMapping("finduser/{email}")
+    public ResponseEntity<User> findUserById(@PathVariable String email){
+        User foundUser = userServices.readById(email);
+        return new ResponseEntity<>(foundUser, HttpStatus.OK);
+    }
+
     @PutMapping("/resetPassword")
     public String resetPassword(@RequestBody ResetPasswordCreds rpc){
 
@@ -62,7 +68,7 @@ public class UserServlet implements Authable {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/authCheck")
+    @PostMapping("/authCheck")
     public ResponseEntity<User> checkAuth(@RequestBody CodeCheck codeCheck){
 
         User user = userServices.readById(codeCheck.getEmail());

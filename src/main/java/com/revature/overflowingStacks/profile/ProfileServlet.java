@@ -39,8 +39,6 @@ public class ProfileServlet {
         User authProfile= (User) req.getAttribute("authUser");
 
         newProfile.setProfileName(newProfilei.getProfileName());
-        newProfile.setFname(newProfilei.getFname());
-        newProfile.setLname(newProfilei.getLname());
         newProfile.setEmail(userServices.readById(newProfilei.getEmail()));
         newProfile.setBalance(newProfilei.getBalance());
         newProfile.setAccountName(newProfilei.getAccountName());
@@ -58,8 +56,6 @@ public class ProfileServlet {
         User authProfile= (User) req.getAttribute("authUser");
 
         newProfile.setProfileName(newProfilei.getProfileName());
-        newProfile.setFname(newProfilei.getFname());
-        newProfile.setLname(newProfilei.getLname());
         newProfile.setEmail(userServices.readById(newProfilei.getEmail()));
         newProfile.setBalance(newProfilei.getBalance());
         newProfile.setAccountName(newProfilei.getAccountName());
@@ -74,16 +70,16 @@ public class ProfileServlet {
         boolean newProfile = profileServices.delete(profileName);
     }
 
-    @GetMapping("/findProfile")
-    public ResponseEntity<Profile> FindWhomProfile(@RequestParam String id){
-        try {
-            Profile profile = profileServices.readById(id);
-            return new ResponseEntity<>(profile, HttpStatus.OK);
-        }catch(Exception e){
-            return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
-        }
+//     @GetMapping("/findProfile")
+//     public ResponseEntity<Profile> FindWhomProfile(@RequestParam String id){
+//         try {
+//             Profile profile = profileServices.readById(id);
+//             return new ResponseEntity<>(profile, HttpStatus.OK);
+//         }catch(Exception e){
+//             return new ResponseEntity<>(HttpStatus.ALREADY_REPORTED);
+//         }
 
-    }
+//     }
 
     @PutMapping("/updateProfile")
     public ResponseEntity<Profile> updateTheProfile(@RequestBody Profile profile) {

@@ -9,6 +9,14 @@ public class CodeCheck {
         return code;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     public String getEmail() {
         return email;
     }
