@@ -3,11 +3,15 @@ package com.revature.overflowingStacks.user;
 import com.revature.overflowingStacks.util.exceptions.ResourcePersistanceException;
 import com.revature.overflowingStacks.util.interfaces.Serviceable;
 
+import com.revature.overflowingStacks.util.web.dto.ResetPasswordCreds;
+
+
 import de.taimos.totp.TOTP;
 import dev.turingcomplete.kotlinonetimepassword.GoogleAuthenticator;
 import lombok.val;
 import org.apache.commons.codec.binary.Base32;
 import org.apache.commons.codec.binary.Hex;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,11 +50,6 @@ public class UserServices implements Serviceable<User> {
     public User readById(String id) {
         User user = userDao.findById(id).get();
         return user;
-//         Optional<User> optionalUser= userDao.findById(id);
-//         if(!optionalUser.isPresent()) {
-//             throw new ResourcePersistanceException("The user eamil " + id + "is not present.");
-//         }
-//         return optionalUser.get();
 
     }
 
@@ -89,6 +88,14 @@ public class UserServices implements Serviceable<User> {
         if (newUserProfile.getDob() == null || newUserProfile.getDob().trim().equals("")) return false;
         return true;
     }
+
+
+    public boolean update(ResetPasswordCreds resetPasswordCreds) {
+        if( userDao.resetPassword(resetPasswordCreds.getEmail(), resetPasswordCreds.getPassword(), resetPasswordCreds.getNewpassword()) == 1 )
+            return true;
+        return false;
+    }
+
 
 }
 
