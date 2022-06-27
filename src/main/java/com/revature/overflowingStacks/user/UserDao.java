@@ -16,11 +16,11 @@ import java.util.Optional;
 public interface UserDao extends CrudRepository<User,String> {
 
 
-    @Modifying
-    @Query(value = "UPDATE User set password = :newPassword WHERE email = :email AND password = :password")
-    int resetPassword(String email, String password, String newPassword);
+//     @Modifying
+//     @Query(value = "UPDATE User set password = :newPassword WHERE email = :email AND password = :password")
+//     int resetPassword(String email, String password, String newPassword);
 
-    @Query(value = "Select User WHERE email= :email and password= : password")
-    Optional<User> authenticateUser(String email, String password);
+//     @Query(value = "Select User WHERE email= :email and password= : password")
+//     Optional<User> authenticateUser(String email, String password);
 
 }
