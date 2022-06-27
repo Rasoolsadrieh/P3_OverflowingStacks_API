@@ -99,28 +99,28 @@ public class UserServices implements Serviceable<User> {
     }
 
 
-    public boolean update(ResetPasswordCreds resetPasswordCreds) {
-        if (userDao.resetPassword(resetPasswordCreds.getEmail(), resetPasswordCreds.getPassword(), resetPasswordCreds.getNewpassword()) == 1) {
-            return true;
-        }
-        return false;
-    }
+//     public boolean update(ResetPasswordCreds resetPasswordCreds) {
+//         if (userDao.resetPassword(resetPasswordCreds.getEmail(), resetPasswordCreds.getPassword(), resetPasswordCreds.getNewpassword()) == 1) {
+//             return true;
+//         }
+//         return false;
+//     }
 
 
-    public User authenticateUser(String email, String password) {
-        if(password == null || password.trim().equals("") || email == null || email.trim().equals("")) {
-            throw new InvalidRequestException("Either email or password is an invalid entry. Please try logging in again");
-        }
+//     public User authenticateUser(String email, String password) {
+//         if(password == null || password.trim().equals("") || email == null || email.trim().equals("")) {
+//             throw new InvalidRequestException("Either email or password is an invalid entry. Please try logging in again");
+//         }
 
-        Optional<User> authenticateUser = userDao.authenticateUser(email, password);
+//         Optional<User> authenticateUser = userDao.authenticateUser(email, password);
 
-        if (!authenticateUser.isPresent()){
-            throw new AuthenticationException("Unauthenticated user, information provided was not consistent with our database.");
-        }
+//         if (!authenticateUser.isPresent()){
+//             throw new AuthenticationException("Unauthenticated user, information provided was not consistent with our database.");
+//         }
 
-        return authenticateUser.get();
+//         return authenticateUser.get();
 
-    }
+//     }
 
 
 }
