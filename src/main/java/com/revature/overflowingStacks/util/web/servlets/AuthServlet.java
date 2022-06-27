@@ -28,16 +28,16 @@ public class AuthServlet {
         this.userServices = userServices;
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void authorizeUser(@RequestBody LoginCreds loginCreds, HttpSession httpSession){
-        User authUser = userServices.authenticateUser(loginCreds.getUsername(), loginCreds.getPassword());
-        httpSession.setAttribute("authUser", authUser);
-    }
+//     @PostMapping
+//     @ResponseStatus(HttpStatus.NO_CONTENT)
+//     public void authorizeUser(@RequestBody LoginCreds loginCreds, HttpSession httpSession){
+//         User authUser = userServices.authenticateUser(loginCreds.getUsername(), loginCreds.getPassword());
+//         httpSession.setAttribute("authUser", authUser);
+//     }
 
-    @DeleteMapping
-    public void logout(HttpSession session){
-        session.invalidate();
-    }
+//     @DeleteMapping
+//     public void logout(HttpSession session){
+//         session.invalidate();
+//     }
 }
 
