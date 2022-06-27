@@ -22,13 +22,17 @@ public class UserServlet implements Authable {
     @PutMapping("/resetPassword")
     public String resetPassword(@RequestBody ResetPasswordCreds rpc){
 
-        User oldPassword = userServices.readById(rpc.getEmail());
+//        User oldPassword = userServices.readById(rpc.getEmail());
+//
+//        oldPassword.setPassword(rpc.getNewpassword());
+//
+//        User newPassword = userServices.update(oldPassword);
 
-        oldPassword.setPassword(rpc.getNewpassword());
-
-        User newPassword = userServices.update(oldPassword);
-
-        String message = "Your password has been reset";
+        String message = "";
+        if (userServices.update(rpc))
+            message = "Your password has been reset";
+        else
+            message = "Please check your email and previous password to update your password";
         return message;
     }
 
