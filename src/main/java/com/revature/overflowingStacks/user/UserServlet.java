@@ -62,7 +62,7 @@ public class UserServlet implements Authable {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    @GetMapping("/authCheck")
+    @PostMapping("/authCheck")
     public ResponseEntity<User> checkAuth(@RequestBody CodeCheck codeCheck){
 
         User user = userServices.readById(codeCheck.getEmail());
