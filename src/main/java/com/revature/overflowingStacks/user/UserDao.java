@@ -17,10 +17,10 @@ public interface UserDao extends CrudRepository<User,String> {
 
 
     @Modifying
-    @Query(value = "UPDATE User set password = :newPassword WHERE email = :email AND password = :password")
+    @Query(value = "UPDATE user_table set password = :newPassword WHERE email = :email AND password = :password")
     int resetPassword(String email, String password, String newPassword);
 
-    @Query(value = "From User WHERE email= :email and password= : password")
-    Optional<User> authenticateUser(String username, String password);
+    @Query(value = "From user_table WHERE email= :email and password= : password")
+    Optional<User> authenticateUser(String email, String password);
 
 }
