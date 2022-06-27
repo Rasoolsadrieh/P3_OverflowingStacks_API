@@ -37,9 +37,10 @@ public class UserServlet implements Authable {
         return new ResponseEntity<>(userServices.readAll(), HttpStatus.FOUND);
     }
 
-    @GetMapping("/findUser")
-    public ResponseEntity<User> findUser(@PathVariable String email){
-        return new ResponseEntity<>(userServices.readById(email), HttpStatus.OK);
+    @GetMapping("/{email}")
+    public ResponseEntity<User> findUserById(@PathVariable String email){
+        User foundUser = userServices.readById(email);
+        return new ResponseEntity<>(foundUser, HttpStatus.OK);
     }
 
     @PutMapping("/resetPassword")
