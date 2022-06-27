@@ -42,22 +42,22 @@ public class UserServlet implements Authable {
         return new ResponseEntity<>(foundUser, HttpStatus.OK);
     }
 
-    @PutMapping("/resetPassword")
-    public String resetPassword(@RequestBody ResetPasswordCreds rpc){
+//     @PutMapping("/resetPassword")
+//     public String resetPassword(@RequestBody ResetPasswordCreds rpc){
 
-//        User oldPassword = userServices.readById(rpc.getEmail());
-//
-//        oldPassword.setPassword(rpc.getNewpassword());
-//
-//        User newPassword = userServices.update(oldPassword);
+// //        User oldPassword = userServices.readById(rpc.getEmail());
+// //
+// //        oldPassword.setPassword(rpc.getNewpassword());
+// //
+// //        User newPassword = userServices.update(oldPassword);
 
-        String message = "";
-        if (userServices.update(rpc))
-            message = "Your password has been reset";
-        else
-            message = "Please check your email and previous password to update your password";
-        return message;
-    }
+//         String message = "";
+//         if (userServices.update(rpc))
+//             message = "Your password has been reset";
+//         else
+//             message = "Please check your email and previous password to update your password";
+//         return message;
+//     }
 
 
     @DeleteMapping("/delete/{email}")
