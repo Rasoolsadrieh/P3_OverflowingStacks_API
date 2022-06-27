@@ -1,7 +1,10 @@
 package com.revature.overflowingStacks.user;
 
+import com.revature.overflowingStacks.util.exceptions.AuthenticationException;
+import com.revature.overflowingStacks.util.exceptions.InvalidRequestException;
 import com.revature.overflowingStacks.util.exceptions.ResourcePersistanceException;
 import com.revature.overflowingStacks.util.interfaces.Serviceable;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.revature.overflowingStacks.util.web.dto.ResetPasswordCreds;
 
@@ -26,14 +29,19 @@ import java.util.Optional;
 @Service
 @Transactional
 public class UserServices implements Serviceable<User> {
+
+
     private UserDao userDao;
+
     @Autowired
     public UserServices(UserDao userDao) {
         this.userDao = userDao;
     }
-
     @Override
     public User create(User newUser) {
+        if (!validateInput(newUser)) {
+            throw new InvalidRequestException("User input was not validated ");
+        }
         User persistedUser = userDao.save(newUser);
 
         if(persistedUser == null){
@@ -41,6 +49,7 @@ public class UserServices implements Serviceable<User> {
         }
         return persistedUser;
     }
+
     @Override
     public List<User> readAll() {
         List<User> users = (List<User>) userDao.findAll();
@@ -60,10 +69,10 @@ public class UserServices implements Serviceable<User> {
     }
 
     @Override
-    public boolean delete(String id) {
-        return false;
+    public boolean delete(String email) {
+        userDao.deleteById(email);
+        return true;
     }
-
 
     public String getTOTPCode(String secret) {
         Base32 base32 = new Base32();
@@ -91,9 +100,26 @@ public class UserServices implements Serviceable<User> {
 
 
     public boolean update(ResetPasswordCreds resetPasswordCreds) {
-        if( userDao.resetPassword(resetPasswordCreds.getEmail(), resetPasswordCreds.getPassword(), resetPasswordCreds.getNewpassword()) == 1 )
+        if (userDao.resetPassword(resetPasswordCreds.getEmail(), resetPasswordCreds.getPassword(), resetPasswordCreds.getNewpassword()) == 1) {
             return true;
+        }
         return false;
+    }
+
+
+    public User authenticateUser(String email, String password) {
+        if(password == null || password.trim().equals("") || email == null || email.trim().equals("")) {
+            throw new InvalidRequestException("Either email or password is an invalid entry. Please try logging in again");
+        }
+
+        Optional<User> authenticateUser = userDao.authenticateUser(email, password);
+
+        if (!authenticateUser.isPresent()){
+            throw new AuthenticationException("Unauthenticated user, information provided was not consistent with our database.");
+        }
+
+        return authenticateUser.get();
+
     }
 
 
