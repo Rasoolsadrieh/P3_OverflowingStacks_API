@@ -59,9 +59,12 @@ public class UserServices implements Serviceable<User> {
         return true;
     }
 
+<<<<<<< HEAD
     public boolean update(ResetPasswordCreds resetPasswordCreds) {
         if( userDao.resetPassword(resetPasswordCreds.getEmail(), resetPasswordCreds.getPassword(), resetPasswordCreds.getNewpassword()) == 1 )
             return true;
         return false;
     }
+=======
+>>>>>>> 80febda0b271fa6aebba40a7e55a22b9669ac475
 }
