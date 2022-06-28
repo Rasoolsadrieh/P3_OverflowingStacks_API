@@ -1,5 +1,7 @@
 package com.revature.overflowingStacks.user;
 
+import com.revature.overflowingStacks.util.exceptions.AuthenticationException;
+import com.revature.overflowingStacks.util.exceptions.InvalidRequestException;
 import com.revature.overflowingStacks.util.exceptions.ResourcePersistanceException;
 import com.revature.overflowingStacks.util.interfaces.Serviceable;
 
@@ -88,6 +90,17 @@ public class UserServices implements Serviceable<User> {
             return false;
         if (newUserProfile.getDob() == null || newUserProfile.getDob().trim().equals("")) return false;
         return true;
+    }
+
+    public User authenticateUser(String email, String password) {
+        if(password == null || password.trim().equals("") || email == null || email.trim().equals("")) {
+            throw new InvalidRequestException("Either email or password is an invalid entry. Please try logging in again");
+        }
+        Optional<User> authenticateUser = userDao.authenticateUser(email, password);
+        if (!authenticateUser.isPresent()){
+            throw new AuthenticationException("Unauthenticated user, information provided was not consistent with our database.");
+        }
+        return authenticateUser.get();
     }
 
 }
