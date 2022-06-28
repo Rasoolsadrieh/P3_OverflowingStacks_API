@@ -3,16 +3,16 @@ package com.revature.overflowingStacks.util.web.dto;
 public class ResetPasswordCreds {
 
     private String email;
-
-    private String password;
     private String newpassword;
 
     // JACKSON REQUIRES A NO ARG CONSTRUCTOR
 
 
-    public ResetPasswordCreds(String email, String password, String newpassword) {
+    public ResetPasswordCreds() {
+    }
+
+    public ResetPasswordCreds(String email, String newpassword) {
         this.email = email;
-        this.password = password;
         this.newpassword = newpassword;
     }
 
@@ -22,14 +22,6 @@ public class ResetPasswordCreds {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getNewpassword() {

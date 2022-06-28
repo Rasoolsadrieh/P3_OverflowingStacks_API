@@ -20,7 +20,6 @@ import java.io.IOException;
 @CrossOrigin
 @RequestMapping("/auth")
 public class AuthServlet {
-
     private final UserServices userServices;
 
     @Autowired
