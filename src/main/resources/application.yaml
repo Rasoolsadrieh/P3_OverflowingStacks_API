@@ -9,9 +9,9 @@ spring:
 
   datasource:
     driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
-    url: ${DBURL}
-    username: ${DBUSER}
-    password: ${DBPASS}
+    url: jdbc:sqlserver://;serverName=overflowstacks.database.windows.net;databaseName=overFlow;encrypt=true
+    username: overflowingstacks12
+    password: Stacks@13
   jpa:
     database-platform: org.hibernate.dialect.SQLServerDialect
     show-sql: true
