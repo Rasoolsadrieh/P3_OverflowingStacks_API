@@ -17,7 +17,7 @@ public interface UserDao extends CrudRepository<User,String> {
 //    void updatePassword(String email, String newPassword);
 
     @Modifying
-    @Query(value = "UPDATE User set password = :newPassword WHERE email = :email AND password = :password")
+    @Query(value = "UPDATE User set password = :newPassword WHERE email = :email AND password = : password")
     int resetPassword(String email, String password, String newPassword);
 
     @Query(value = "From User WHERE email= :email and password= : password")
