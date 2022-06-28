@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @CrossOrigin
 @RequestMapping("/users")
@@ -42,29 +43,19 @@ public class UserServlet implements Authable {
         return new ResponseEntity<>(foundUser, HttpStatus.OK);
     }
 
-//     @PutMapping("/resetPassword")
-//     public String resetPassword(@RequestBody ResetPasswordCreds rpc){
+    @PutMapping("/resetPassword")
+    public String resetPassword(@RequestBody ResetPasswordCreds rpc){
 
-// //        User oldPassword = userServices.readById(rpc.getEmail());
-// //
-// //        oldPassword.setPassword(rpc.getNewpassword());
-// //
-// //        User newPassword = userServices.update(oldPassword);
+        User oldPassword = userServices.readById(rpc.getEmail());
 
-//         String message = "";
-//         if (userServices.update(rpc))
-//             message = "Your password has been reset";
-//         else
-//             message = "Please check your email and previous password to update your password";
-//         return message;
-//     }
+        oldPassword.setPassword(rpc.getNewpassword());
 
+        User newPassword = userServices.update(oldPassword);
 
-    @DeleteMapping("/delete/{email}")
-    public ResponseEntity<User> deleteUser(@PathVariable String email) {
-        userServices.delete(email);
-        return new ResponseEntity<>(HttpStatus.OK);
+        String message = "Your password has been reset";
+        return message;
     }
+
 
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user){
