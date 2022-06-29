@@ -27,6 +27,7 @@ public class AuthServlet {
         this.userServices = userServices;
     }
 
+    @CrossOrigin
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void authorizeUser(@RequestBody LoginCreds loginCreds, HttpSession httpSession){
