@@ -1,0 +1,29 @@
+server:
+  port: 9005
+  servlet:
+    context-path: /
+# in a properties file, it would look like spring.application.name
+spring:
+  application:
+    name: overflowingStacks
+
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: ${DBURL}
+    username: ${DBUSER}
+    password: ${DBPASS}
+  jpa:
+    database-platform: org.hibernate.dialect.SQLServerDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
+# Default actuator gives us the health endpoint, we will add a few others
+management:
+  endpoints:
+    web:
+      exposure:
+        includes:
+          - "beans"
+          - "health"
+          - "info"
