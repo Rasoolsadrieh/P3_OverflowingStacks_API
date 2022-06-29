@@ -5,6 +5,7 @@ import com.revature.overflowingStacks.util.exceptions.InvalidRequestException;
 import com.revature.overflowingStacks.util.exceptions.ResourcePersistanceException;
 import com.revature.overflowingStacks.util.interfaces.Serviceable;
 
+import com.revature.overflowingStacks.util.web.dto.ResetPasswordCreds;
 import de.taimos.totp.TOTP;
 import dev.turingcomplete.kotlinonetimepassword.GoogleAuthenticator;
 import lombok.val;
@@ -101,6 +102,13 @@ public class UserServices implements Serviceable<User> {
             throw new AuthenticationException("Unauthenticated user, information provided was not consistent with our database.");
         }
         return authenticateUser.get();
+    }
+
+    public boolean update(ResetPasswordCreds resetPasswordCreds) {
+
+        if (userDao.resetPassword(resetPasswordCreds.getEmail(), resetPasswordCreds.getPassword(), resetPasswordCreds.getNewpassword()) == 1)
+            return true;
+        return false;
     }
 
 }
