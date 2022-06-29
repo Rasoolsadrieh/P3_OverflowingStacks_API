@@ -54,6 +54,7 @@ public class UserServlet implements Authable {
     }
 
 
+    @CrossOrigin
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user){
 
