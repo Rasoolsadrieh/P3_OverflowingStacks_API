@@ -1,4 +1,3 @@
-
 server:
   port: 9005
   servlet:
@@ -6,18 +5,20 @@ server:
 # in a properties file, it would look like spring.application.name
 spring:
   application:
-    name: overflowingstacks
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=overflowingstacks
+    name: overflowingStacks
 
-    username: postgres
-    password: password
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: ${DBURL}
+    username: ${DBUSER}
+    password: ${DBPASS}
   jpa:
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    database-platform: org.hibernate.dialect.SQLServerDialect
     show-sql: true
     hibernate:
       ddl-auto: update
+
+# Default actuator gives us the health endpoint, we will add a few others
 management:
   endpoints:
     web:

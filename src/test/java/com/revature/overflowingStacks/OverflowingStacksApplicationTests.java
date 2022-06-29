@@ -12,27 +12,27 @@ import static org.mockito.Mockito.mock;
 
 
 
-@SpringBootTest
+//@SpringBootTest
 class OverflowingStacksApplicationTests {
-	Profile suit;
-	ProfileServices suit1;
-	ProfileDao mockProfileDao;
-	@BeforeEach
-	public void testPrep(){
-		mockProfileDao = mock(ProfileDao.class);
-		suit = new Profile("greatCustomer","great", "Customer","cutomer@mail.com", 4000, "custo", 84734893);
-		//stu1 = new ProfileServices(mockProfileDao);
+// 	Profile suit;
+// 	ProfileServices suit1;
+// 	ProfileDao mockProfileDao;
+// 	@BeforeEach
+// 	public void testPrep(){
+// 		mockProfileDao = mock(ProfileDao.class);
+// 		//suit = new Profile("greatCustomer","great", "Customer","cutomer@mail.com", 4000, "custo", 84734893);
+// 		//stu1 = new ProfileServices(mockProfileDao);
 
 
-	}
-	@Test
-	public void test_validInput_givenProfile_returnTrue(){
-		Profile profile = new Profile("numberOne", "numberUno","customer","mail@mail.com", 4666, "nameMe", 457597);
-		boolean actualResult = suit1.validateInput(profile);
-	}
+// 	}
+// 	@Test
+// 	public void test_validInput_givenProfile_returnTrue(){
+// 		//Profile profile = new Profile("numberOne", "numberUno","customer","mail@mail.com", 4666, "nameMe", 457597);
+// 		//boolean actualResult = suit1.validateInput(profile);
+// 	}
 
-	@Test
-	void contextLoads() {
-	}
+// 	@Test
+// 	void contextLoads() {
+// 	}
 
 }
