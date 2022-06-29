@@ -54,7 +54,7 @@ public class UserServlet implements Authable {
     }
 
 
-    @CrossOrigin
+    @CrossOrigin(origins = "https://overflowingstacks.azurewebsites.net", allowedHeaders = "*")
     @PostMapping("/register")
     public ResponseEntity<User> createUser(@RequestBody User user){
 
