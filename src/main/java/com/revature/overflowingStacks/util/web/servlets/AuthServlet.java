@@ -27,10 +27,11 @@ public class AuthServlet {
         this.userServices = userServices;
     }
 
+
     @PostMapping
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void authorizeUser(@RequestBody LoginCreds loginCreds, HttpSession httpSession){
-        User authUser = userServices.authenticateUser(loginCreds.getUsername(), loginCreds.getPassword());
+        User authUser = userServices.authenticateUser(loginCreds.getEmail(), loginCreds.getPassword());
         httpSession.setAttribute("authUser", authUser);
     }
 
